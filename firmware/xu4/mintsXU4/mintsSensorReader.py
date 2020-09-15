@@ -28,10 +28,11 @@ from collections import OrderedDict
 import netifaces as ni
 import math
 
-macAddress    = mD.macAddress
-dataFolder    = mD.dataFolder
-latestDisplayOn    = mD.latestDisplayOn
-mqttOn        =  mD.mqttOn
+macAddress        = mD.macAddress
+dataFolder        = mD.dataFolder
+dataFolderMQTT    = mD.dataFolderMQTT
+latestDisplayOn   = mD.latestDisplayOn
+mqttOn            =  mD.mqttOn
 
 def sensorFinisher(dateTime,sensorName,sensorDictionary):
     # Getting Write Path
@@ -96,7 +97,7 @@ def sensorSend(sensorID,sensorData,dateTime):
     if(sensorID=="OPCN2"):
         OPCN2Write(sensorData,dateTime)
     if(sensorID=="OPCN3"):
-        OPCN3Write(sensorData,dateTime)
+        OPCN3Write(sensorData.dateTime)
     if(sensorID=="VEML6070"):
         VEML6070Write(sensorData,dateTime)
     if(sensorID=="TSL2591"):
@@ -637,6 +638,7 @@ def GPSGPRMCWrite(dataString,dateTime):
         #Getting Write Path
         sensorFinisher(dateTime,sensorName,sensorDictionary)
 
+
 def GPSGPRMC2Write(dataString,dateTime):
 
     dataStringPost = dataString.replace('\n', '')
@@ -702,6 +704,11 @@ def getWritePath(labelIn,dateTime):
     #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
     writePath = dataFolder+"/"+macAddress+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ macAddress+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
     return writePath;
+
+def getWritePathMQTT(labelIn,dateTime):
+    #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
+    writePath = dataFolderMQTT+"/"+macAddress+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ macAddress+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
+    return writePath;    
 
 def getListDictionaryFromPath(dirPath):
     print("Reading : "+ dirPath)

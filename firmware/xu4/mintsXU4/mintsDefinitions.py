@@ -66,7 +66,7 @@ def findMacAddress():
     return "xxxxxxxx"
 
 
-
+dataFolderMQTT        = "/home/teamlary/mintsDataMQTT/raw"
 dataFolder            = "/home/teamlary/mintsData/raw"
 duePort               = findDuePort()
 nanoPorts             = findNanoPorts()
