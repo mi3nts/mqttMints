@@ -19,7 +19,7 @@ def on_connect(client, userdata, flags, rc):
  
     # Subscribing in on_connect() - if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    nodeID = "0242f3f105a8"
+    nodeID = "001e06318c3d"
     client.subscribe(nodeID+"/HM3301")
     client.subscribe(nodeID+"/OPCN3")
     client.subscribe(nodeID+"/BME280")
