@@ -97,7 +97,7 @@ def sensorSend(sensorID,sensorData,dateTime):
     if(sensorID=="OPCN2"):
         OPCN2Write(sensorData,dateTime)
     if(sensorID=="OPCN3"):
-        OPCN3Write(sensorData.dateTime)
+        OPCN3Write(sensorData,dateTime)
     if(sensorID=="VEML6070"):
         VEML6070Write(sensorData,dateTime)
     if(sensorID=="TSL2591"):
@@ -364,7 +364,7 @@ def OPCN3Write(sensorData,dateTime):
     if(len(dataOut) == (dataLength +1)):
         sensorDictionary = OrderedDict([
                 ("dateTime"    ,str(dateTime)),
-        		("valid"       ,dataOut[0]),
+       		("valid"       ,dataOut[0]),
             	("binCount0"   ,dataOut[1]),
             	("binCount1"   ,dataOut[2]),
             	("binCount2"   ,dataOut[3]),
