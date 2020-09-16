@@ -35,7 +35,7 @@ def on_message(client, userdata, msg):
     [nodeID,sensorID ] = msg.topic.split('/')
     sensorDictionary = decoder.decode(msg.payload.decode("utf-8","ignore"))
     dateTime  = datetime.datetime.strptime(sensorDictionary["dateTime"], '%Y-%m-%d %H:%M:%S.%f')
-    writePath = mSR.getWritePathMQTT(sensorID,dateTime)
+    writePath = mSR.getWritePathMQTT(nodeID,sensorID,dateTime)
     exists    = mSR.directoryCheck(writePath)
     sensorDictionary = decoder.decode(msg.payload.decode("utf-8","ignore"))
     print("Writing MQTT Data")
